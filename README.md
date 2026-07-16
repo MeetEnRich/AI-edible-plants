@@ -19,6 +19,7 @@ An offline-first, AI-powered mobile application designed to safely identify, cat
 - **Cloud Database**: Firebase Cloud Firestore
 - **Authentication**: Firebase Authentication (Email/Password)
 - **AI Engine**: Google Generative AI (`google_generative_ai`)
+- **Image Caching**: `cached_network_image` for robust offline image viewing
 - **Image Hosting**: ImgBB API
 - **State Management**: Provider (`ChangeNotifierProvider`, `ChangeNotifierProxyProvider`)
 

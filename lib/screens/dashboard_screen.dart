@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
@@ -553,7 +554,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 width: double.infinity,
                 child: hasImage
                     ? (isNetwork
-                        ? Image.network(scan.imagePath, fit: BoxFit.cover)
+                        ? CachedNetworkImage(imageUrl: scan.imagePath, fit: BoxFit.cover)
                         : Image.file(imageFile!, fit: BoxFit.cover))
                     : Container(
                         color: AppColors.surfaceVariant,

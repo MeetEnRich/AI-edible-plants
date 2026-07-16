@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -391,7 +392,7 @@ class _GridPlantCard extends StatelessWidget {
                 children: [
                   hasImage
                       ? (isNetwork
-                          ? Image.network(plant.imagePath, fit: BoxFit.cover)
+                          ? CachedNetworkImage(imageUrl: plant.imagePath, fit: BoxFit.cover)
                           : Image.file(imageFile!, fit: BoxFit.cover))
                       : Container(
                           color: AppColors.surfaceVariant,
@@ -560,7 +561,7 @@ class _ListPlantCard extends StatelessWidget {
                   height: 72,
                   child: hasImage
                       ? (isNetwork
-                          ? Image.network(plant.imagePath, fit: BoxFit.cover)
+                          ? CachedNetworkImage(imageUrl: plant.imagePath, fit: BoxFit.cover)
                           : Image.file(imageFile!, fit: BoxFit.cover))
                       : Container(
                           color: AppColors.surfaceVariant,
@@ -729,7 +730,7 @@ class _PlantDetailSheet extends StatelessWidget {
                     height: 260,
                     margin: const EdgeInsets.symmetric(horizontal: 16),
                     child: isNetwork
-                        ? Image.network(plant.imagePath, fit: BoxFit.cover, width: double.infinity)
+                        ? CachedNetworkImage(imageUrl: plant.imagePath, fit: BoxFit.cover, width: double.infinity)
                         : Image.file(imageFile!, fit: BoxFit.cover, width: double.infinity),
                   ),
                 )
