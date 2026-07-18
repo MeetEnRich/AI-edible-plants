@@ -9,6 +9,7 @@ import '../services/auth_service.dart';
 import '../database/database_helper.dart';
 import '../models/plant_catalog_model.dart';
 import '../services/sync_service.dart';
+import 'plant_detail_screen.dart';
 
 /// ──────────────────────────────────────────────
 /// HerbariumScreen — Browsable catalog of all
@@ -124,7 +125,7 @@ class _HerbariumScreenState extends State<HerbariumScreen> {
   }
 
   void _showDetailSheet(PlantCatalogModel plant) {
-    showPlantDetailSheet(context, plant);
+    Navigator.push(context, MaterialPageRoute(builder: (ctx) => PlantDetailScreen(plant: plant)));
   }
 
   Color _confidenceColor(double score) {
@@ -391,9 +392,12 @@ class _GridPlantCard extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   hasImage
-                      ? (isNetwork
-                          ? CachedNetworkImage(imageUrl: plant.imagePath, fit: BoxFit.cover)
-                          : Image.file(imageFile!, fit: BoxFit.cover))
+                      ? Hero(
+                          tag: 'plant_image_${plant.id}',
+                          child: isNetwork
+                              ? CachedNetworkImage(imageUrl: plant.imagePath, fit: BoxFit.cover)
+                              : Image.file(imageFile!, fit: BoxFit.cover),
+                        )
                       : Container(
                           color: AppColors.surfaceVariant,
                           child: const Icon(
@@ -560,9 +564,12 @@ class _ListPlantCard extends StatelessWidget {
                   width: 72,
                   height: 72,
                   child: hasImage
-                      ? (isNetwork
-                          ? CachedNetworkImage(imageUrl: plant.imagePath, fit: BoxFit.cover)
-                          : Image.file(imageFile!, fit: BoxFit.cover))
+                      ? Hero(
+                          tag: 'plant_image_${plant.id}',
+                          child: isNetwork
+                              ? CachedNetworkImage(imageUrl: plant.imagePath, fit: BoxFit.cover)
+                              : Image.file(imageFile!, fit: BoxFit.cover),
+                        )
                       : Container(
                           color: AppColors.surfaceVariant,
                           child: const Icon(Icons.eco_rounded, color: AppColors.textHint),

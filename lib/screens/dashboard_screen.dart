@@ -8,7 +8,7 @@ import '../services/auth_service.dart';
 import '../services/sync_service.dart';
 import '../database/database_helper.dart';
 import '../models/plant_catalog_model.dart';
-import 'herbarium_screen.dart';
+import 'plant_detail_screen.dart';
 
 /// ──────────────────────────────────────────────
 /// DashboardScreen — Main hub after login.
@@ -527,7 +527,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     return GestureDetector(
       onTap: () {
-        showPlantDetailSheet(context, scan);
+        Navigator.push(context, MaterialPageRoute(builder: (ctx) => PlantDetailScreen(plant: scan)));
       },
       child: Container(
         width: 160,
@@ -553,9 +553,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 height: 110,
                 width: double.infinity,
                 child: hasImage
-                    ? (isNetwork
-                        ? CachedNetworkImage(imageUrl: scan.imagePath, fit: BoxFit.cover)
-                        : Image.file(imageFile!, fit: BoxFit.cover))
+                    ? Hero(
+                        tag: 'plant_image_${scan.id}',
+                        child: isNetwork
+                            ? CachedNetworkImage(imageUrl: scan.imagePath, fit: BoxFit.cover)
+                            : Image.file(imageFile!, fit: BoxFit.cover),
+                      )
                     : Container(
                         color: AppColors.surfaceVariant,
                         child: const Icon(Icons.local_florist_rounded,

@@ -9,8 +9,9 @@ An offline-first, AI-powered mobile application designed to safely identify, cat
 - **Safety First**: Highlights toxic look-alikes, edibility status, and required traditional preparation methods to ensure safe foraging.
 - **Indigenous Knowledge Base**: Integrates local names (Igbo, Hausa, Yoruba) and traditional recipes/preparation methods seeded directly into the app.
 - **Offline-First Architecture**: Powered by a robust local **SQLite** database. You can scan plants deep in the forest without internet access; the app seamlessly queues them for verification.
+- **Interactive OpenStreetMap Integration**: Automatically captures precise GPS coordinates when a plant is scanned and visualizes them on an interactive map using `flutter_map` (zero API keys required, perfect for offline/field scaling).
 - **Cloud Synchronization**: Once back online, the app automatically verifies pending offline scans via Gemini, uploads images to **ImgBB**, and securely backs up your personal Herbarium to **Firebase Cloud Firestore**.
-- **Premium UI/UX**: Designed with a sleek, emerald-gradient aesthetic, smooth micro-animations (via `flutter_animate`), and glassmorphism cards for a truly modern feel.
+- **Premium UI/UX**: Designed with a sleek, emerald-gradient aesthetic, smooth micro-animations, seamless **Hero image transitions**, and glassmorphism cards for a truly modern feel.
 
 ## 🛠 Tech Stack
 

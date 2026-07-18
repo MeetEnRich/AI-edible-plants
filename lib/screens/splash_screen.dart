@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
 import '../services/auth_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// ──────────────────────────────────────────────
 /// SplashScreen — Animated landing screen with
@@ -30,13 +31,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
     final authService = Provider.of<AuthService>(context, listen: false);
     final isLoggedIn = await authService.tryAutoLogin();
-
+    
     if (!mounted) return;
 
     if (isLoggedIn) {
       Navigator.pushReplacementNamed(context, '/dashboard');
     } else {
-      Navigator.pushReplacementNamed(context, '/login');
+      Navigator.pushReplacementNamed(context, '/onboarding');
     }
   }
 

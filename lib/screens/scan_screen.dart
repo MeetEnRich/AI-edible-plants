@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:geolocator/geolocator.dart';
 import '../theme/app_theme.dart';
 import '../services/gemini_service.dart';
@@ -44,9 +45,28 @@ class _ScanScreenState extends State<ScanScreen> {
       );
 
       if (pickedFile != null) {
-        setState(() {
-          _selectedImage = File(pickedFile.path);
-        });
+        final croppedFile = await ImageCropper().cropImage(
+          sourcePath: pickedFile.path,
+          uiSettings: [
+            AndroidUiSettings(
+              toolbarTitle: 'Crop Plant Image',
+              toolbarColor: AppColors.primary,
+              toolbarWidgetColor: Colors.white,
+              initAspectRatio: CropAspectRatioPreset.original,
+              lockAspectRatio: false,
+              activeControlsWidgetColor: AppColors.accent,
+            ),
+            IOSUiSettings(
+              title: 'Crop Plant Image',
+            ),
+          ],
+        );
+
+        if (croppedFile != null) {
+          setState(() {
+            _selectedImage = File(croppedFile.path);
+          });
+        }
       }
     } catch (e) {
       if (!mounted) return;
@@ -70,12 +90,13 @@ class _ScanScreenState extends State<ScanScreen> {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: const Text('Location services are disabled. Please enable them.'),
+            content: const Text('Location services are disabled. Please enable them in settings.'),
             backgroundColor: AppColors.caution,
             behavior: SnackBarBehavior.floating,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
         );
+        await Geolocator.openLocationSettings();
         setState(() => _gpsEnabled = false);
         return;
       }
@@ -140,13 +161,14 @@ class _ScanScreenState extends State<ScanScreen> {
       await _captureLocation();
     }
 
+    final authService = context.read<AuthService>();
     // Check connectivity
     final connectivityResult = await Connectivity().checkConnectivity();
     final isOnline = connectivityResult.any((r) => r != ConnectivityResult.none);
 
     if (!isOnline) {
       // Offline Mode: Save to Pending Queue
-      final user = context.read<AuthService>().currentUser;
+      final user = authService.currentUser;
       if (user == null) {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(

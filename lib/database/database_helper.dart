@@ -1,6 +1,5 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import '../models/user_model.dart';
 import '../models/plant_catalog_model.dart';
 import '../models/indigenous_metadata_model.dart';
 
@@ -238,6 +237,91 @@ class DatabaseHelper {
         'safety_warnings': 'Generally safe. Contains moderate levels of oxalates '
             'and nitrates — not advised for individuals with kidney issues in '
             'excessive quantities. Wash thoroughly to remove sand and debris.',
+      },
+      {
+        'scientific_name': 'Pterocarpus mildbraedii',
+        'family': 'Fabaceae',
+        'igbo_name': 'Oha (Ora)',
+        'hausa_name': 'Madubiya',
+        'yoruba_name': 'Uro',
+        'description': 'Oha is a beloved tree vegetable primarily found in southeastern '
+            'Nigeria. Its tender leaves are treasured for their unique taste and '
+            'silky texture when cooked. The plant is deeply embedded in Igbo cultural '
+            'traditions.',
+        'preparation_methods': 'Leaves must be plucked tenderly by hand, not cut with '
+            'a knife, to prevent darkening and bitter taste. Used primarily in the '
+            'famous Ofe Oha, thickened with cocoyam or achi. Always added at the very '
+            'end of cooking.',
+        'safety_warnings': 'Completely safe when cooked. Contains small amounts of '
+            'hydrogen cyanide in raw form, which is destroyed completely during '
+            'standard cooking.',
+      },
+      {
+        'scientific_name': 'Gongronema latifolium',
+        'family': 'Apocynaceae',
+        'igbo_name': 'Utazi',
+        'hausa_name': 'Madumaro',
+        'yoruba_name': 'Arokeke',
+        'description': 'Utazi is a tropical climbing shrub with broad, heart-shaped leaves. '
+            'It has a sharp, bitter, and slightly sweet taste. Highly valued in '
+            'traditional medicine for digestion and malaria treatment.',
+        'preparation_methods': 'Can be eaten raw as a garnish or chewed. Often sliced '
+            'and used sparingly as a spice/garnish for Nkwobi, Abacha (African Salad), '
+            'Isi-ewu, and pepper soups. Only a few leaves are needed due to its potency.',
+        'safety_warnings': 'Safe for consumption. Its extreme bitterness limits the '
+            'amount one can comfortably eat. Pregnant women are advised to eat only '
+            'in moderation.',
+      },
+      {
+        'scientific_name': 'Treculia africana',
+        'family': 'Moraceae',
+        'igbo_name': 'Ukwa',
+        'hausa_name': 'Barafuta',
+        'yoruba_name': 'Afon',
+        'description': 'African Breadfruit is a massive forest tree that produces '
+            'huge compound fruits. The extracted seeds (ukwa) are considered a '
+            'delicacy and a highly nutritious source of protein, fats, and complex '
+            'carbohydrates.',
+        'preparation_methods': 'Seeds are extracted from the spongy fruit core. They '
+            'are thoroughly washed and boiled with potash (akanwu) to soften. Can be '
+            'cooked as a porridge with bitter leaf and palm oil, or roasted and eaten '
+            'with coconut.',
+        'safety_warnings': 'Safe to eat. Uncooked seeds contain anti-nutritional factors '
+            'like tannins and oxalates, which are significantly reduced through prolonged '
+            'boiling or roasting.',
+      },
+      {
+        'scientific_name': 'Solanum aethiopicum',
+        'family': 'Solanaceae',
+        'igbo_name': 'Anara',
+        'hausa_name': 'Yalo',
+        'yoruba_name': 'Igba',
+        'description': 'The African Eggplant, or Garden Egg, comes in various shapes '
+            'and colours (white, green, yellow). It is a culturally significant fruit '
+            'often served to guests in southeastern Nigeria as a sign of welcome.',
+        'preparation_methods': 'Can be eaten raw as a crunchy, slightly bitter snack '
+            'often paired with peanut paste (Ose Oji). When cooked, it is chopped and '
+            'used in Garden Egg sauce to eat with boiled yam or plantains. Leaves '
+            '(Anara leaves) are also used in soups.',
+        'safety_warnings': 'Safe for general consumption. Unripe green fruits are '
+            'more bitter due to higher alkaloid content. People sensitive to nightshades '
+            'should monitor consumption.',
+      },
+      {
+        'scientific_name': 'Adansonia digitata',
+        'family': 'Malvaceae',
+        'igbo_name': 'Kuka',
+        'hausa_name': 'Kuka',
+        'yoruba_name': 'Ose',
+        'description': 'The Baobab tree is an iconic savanna species in northern Nigeria. '
+            'Every part of the tree is useful. The leaves are rich in iron and calcium, '
+            'while the fruit pulp is famous for its exceptionally high vitamin C content.',
+        'preparation_methods': 'Young leaves can be eaten fresh, but more commonly, '
+            'leaves are sun-dried and ground into a green powder to make Miyan Kuka '
+            '(a traditional Hausa soup). The powdery fruit pulp is dissolved in water '
+            'to make refreshing drinks.',
+        'safety_warnings': 'Very safe. The dried leaf powder (kuka) is mucilaginous '
+            'when cooked. Ensure the powder is stored in a dry place to prevent mold.',
       },
     ];
 

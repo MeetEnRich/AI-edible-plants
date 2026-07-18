@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../models/user_model.dart';
 
 /// ──────────────────────────────────────────────
@@ -88,6 +87,27 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  String _getFriendlyErrorMessage(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'invalid-credential':
+      case 'user-not-found':
+      case 'wrong-password':
+        return 'Incorrect email or password. Please try again.';
+      case 'invalid-email':
+        return 'The email address is badly formatted.';
+      case 'user-disabled':
+        return 'This user account has been disabled.';
+      case 'email-already-in-use':
+        return 'An account already exists for that email.';
+      case 'operation-not-allowed':
+        return 'Email/password accounts are not enabled.';
+      case 'weak-password':
+        return 'The password provided is too weak.';
+      default:
+        return e.message ?? 'An unknown error occurred. Please try again.';
+    }
+  }
+
   /// Log in with email and password.
   Future<({bool success, String message})> login({
     required String email,
@@ -105,7 +125,7 @@ class AuthService extends ChangeNotifier {
       _currentUser = _userFromFirebase(credential.user);
       return (success: true, message: 'Login successful!');
     } on FirebaseAuthException catch (e) {
-      return (success: false, message: e.message ?? 'Login failed.');
+      return (success: false, message: _getFriendlyErrorMessage(e));
     } catch (e) {
       return (success: false, message: 'Login failed: $e');
     } finally {
